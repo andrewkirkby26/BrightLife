@@ -1,0 +1,320 @@
+/* Large */
+@media (min-aspect-ratio: 1/1) {
+    .halfWidth {
+        width: calc(50%) !important;
+    }
+    
+    .thirdWidth {
+        width: calc(33.33%) !important;
+    }
+
+    .twoThirdsWidth {
+        width: calc(66.66%) !important;
+    }
+
+    .twoFifthsWidth {
+        width: calc(40%) !important;
+    }
+
+    .threeFifthsWidth {
+        width: calc(60%) !important;
+    }
+    
+    .quarterWidth {
+        width: calc(25%) !important;
+    }
+
+    .threeQuarterWidth {
+        width: calc(75%) !important;
+    }
+    .eighthWidth {
+        width: calc(12.5%) !important;
+    }
+}
+
+/* Small */
+@media (max-aspect-ratio: 1/1) {
+    /* These are 100% intentially as "halfWidth" and all smaller ones are impossible too see on a mobile */
+    .halfWidth {
+        width: calc(100%) !important;
+    }
+    
+    .thirdWidth {
+        width: calc(100%) !important;
+    }
+
+    .twoThirdsWidth {
+        width: calc(100%) !important;
+    }
+    
+    .quarterWidth {
+        width: calc(100%) !important;
+    }
+    .eighthWidth {
+        width: calc(100%) !important;
+    }
+
+    .twoFifthsWidth {
+        width: calc(100% - .5rem) !important;
+    }
+
+    .threeFifthsWidth {
+        width: calc(100%) !important;
+    }
+
+    .threeQuarterWidth {
+        width: calc(100%) !important;
+    }
+}
+
+.animation {
+    transition: all .5s ease-out;
+}
+
+.clickable {
+    text-decoration: underline;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.floatRight {
+    float:right !important;
+}
+
+.floatLeft {
+    float:left !important;
+}
+
+.center {
+    display:inline-block !important;
+    float:none !important;
+}
+
+.noFloat {
+    float:unset !important;
+}
+
+.noBorder {
+    border: none !important;
+}
+
+.displayFlex {
+    float:unset !important;
+    display: flex !important;
+}
+
+.displayInline {
+    float:unset !important;
+    display: inline-block !important;
+}
+
+.noOverflow {
+    overflow: unset !important;
+}
+
+.positionRelative {
+    position:relative !important;
+}
+
+.positionAbsolute {
+    position:absolute !important;
+}
+
+.positionFixed {
+    position:fixed !important;
+}
+
+.leftText {
+    text-align: left !important;
+}
+
+.centerText {
+    text-align: center !important;
+}
+
+.rightText {
+    text-align: right !important;
+}
+
+.autoWidth {
+    width: auto !important;
+}
+
+.noMaxWidth {
+    max-width: unset !important;
+}
+
+.noMinWidth {
+    min-width: unset !important;
+}
+
+.fullWidth {
+    width: calc(100%) !important;
+}
+
+.fullWidthWithMargin {
+    width: calc(100% - .5rem) !important;
+    margin: .25rem !important;
+}
+
+.noMaxHeight {
+    max-height: unset !important;
+}
+
+.noMinHeight {
+    min-height: unset !important;
+}
+
+.autoHeight {
+    height: auto !important;
+    line-height: unset !important;
+}
+
+.fullHeight {
+    height: calc(100%) !important;
+    max-height: unset !important;
+}
+
+.thirdHeight {
+    height: calc(33.33%) !important;
+    max-height: unset !important;
+}
+
+.twoThirdsHeight {
+    height: calc(66.66%) !important;
+    max-height: unset !important;
+}
+
+.underline {
+    text-decoration: underline !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.lightFont {
+    font-weight: lighter !important;
+}
+
+.fontExtraExtraSmall {
+    font-size: .6rem !important;
+}
+
+.fontExtraSmall {
+    font-size: .8rem !important;
+}
+
+.fontSmall {
+    font-size: 1rem !important;
+}
+
+.fontMedium {
+    font-size: 1.2rem !important;
+}
+
+.fontLarge {
+    font-size: 1.4rem !important;
+}
+
+.fontExtraLarge {
+    font-size: 1.6rem !important;
+}
+
+.fontLoadSuggestion {
+    font-size: 10rem !important;
+}
+
+.trimTextOverflow {
+    overflow: hidden;
+    white-space: nowrap;    
+    text-overflow: ellipsis;
+}
+
+.background-green {
+    background-color: var(--green) !important;
+}
+
+.background-dark-gray {
+    background-color: var(--dark-gray) !important;
+}
+
+.background-warn {
+    background-color: var(--warn) !important;
+}
+
+.background-primary {
+    background-color: var(--primary) !important;
+}
+
+.background-accent {
+    background-color: var(--accent) !important;
+}
+
+.background-dark-accent {
+    background-color: var(--dark-accent) !important;
+}
+
+.color-warn {
+    color: var(--warn) !important;
+}
+
+.color-dark-gray {
+    color: var(--dark-gray) !important;
+}
+
+.color-primary {
+    color: var(--primary) !important;
+}
+
+.color-accent {
+    color: var(--accent) !important;
+}
+
+.color-dark-accent {
+    color: var(--dark-accent) !important;
+}
+
+.color-green {
+    color: var(--green) !important;
+}
+
+.reverseTrimTextOverflow {
+    direction: rtl;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;    
+    text-overflow: ellipsis;
+}
+
+.noPadding {
+    padding:unset !important;
+}
+
+.noMargin {
+    margin:unset !important;
+}
+
+.smallMargin {
+    margin-left: .25rem !important;
+}
+
+.hover:hover {
+    cursor: pointer;
+}
+
+.boxShadowInset {
+    box-shadow:0.2rem 0 0.4rem 0.1rem rgb(0 0 0 / 30%) inset;
+}
+
+.boxShadow{
+    box-shadow:0.2rem 0 0.4rem 0.1rem rgb(0 0 0 / 30%);
+}
+
+.correctImage {
+    text-align:center;
+    max-width: 100%;
+    background-size: contain;
+}

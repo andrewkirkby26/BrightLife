@@ -1,0 +1,51 @@
+<div class="normal_page_wrapper">
+    <div class="page_top_button_row">
+        <div class="slider_wrapper">
+            <div class="slider_view_container">
+                <div id='topScroller' class="slider_view_sub_container" >
+                    <div id='TOPDashboard' class="slider_object_container hover" [ngClass]="{'slider_object_container_selected': !deviceService.selectedDevice}" (click)="selectTopObject(null)">
+                        <mat-icon class="slider_object_icon">space_dashboard</mat-icon>
+                        <!-- <div class="slider_object_label">Dashboard</div> -->
+                    </div>
+                    <div [id]='"TOP" + device.serialNo' *ngFor='let device of deviceService.devices' class="slider_object_container hover" (click)="selectTopObject(device)" [ngSwitch]='device.type' [ngClass]="{'slider_object_container_selected': (deviceService.selectedDevice && deviceService.selectedDevice.serialNo == device.serialNo)}">
+                        <mat-icon class="slider_object_icon" *ngSwitchCase="Constants.DEVICE_TYPE_LASER_TAINER">pets</mat-icon>
+                        <mat-icon class="slider_object_icon" *ngSwitchCase="Constants.DEVICE_TYPE_FEEDER">local_dining</mat-icon>
+                        <!-- <div class="slider_object_label">{{device.name}}</div> -->
+                    </div>
+                </div>
+                <!-- <div class="mask_container left_mask" [ngClass]="{'left_mask_show': leftMask}"></div> -->
+                <!-- <div class="mask_container right_mask" [ngClass]="{'right_mask_show': rightMask}"></div> -->
+            </div>
+        </div>
+        <button mat-icon-button class='top_left_page_button'(click)="navigationService.toggleNavbar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div id="homeScrollContainer" class="x_scroller_container" >
+        <div id='Dashboard' class="x_panel_container" style="left: 0px">
+            <div class="page_content" [ngClass]="{'page_content_slid_up': (navigationService.view.view != Constants.ROUTE_HOME || !authenticationService.user)}">
+                <div *ngIf="authenticationService.user" class="page_title_row">
+                    <div class="page_title" >{{navigationService.getSalutation() + ', ' + authenticationService.user!.firstName}}</div>
+                </div>
+        
+                <div *ngFor='let navItem of navigationService.navbarItems' [hidden]="!navItem.showOnHome"  class="group_container" [ngSwitch]="navItem.name">
+                    <div class="group_label hover" (click)="navigationService.setView(navItem)" [ngSwitch]="navItem.name">
+                        <mat-icon *ngSwitchCase="'Messages'"  matBadgeSize='small' matBadgeColor="warn" [matBadgeHidden]="messageService.messages.length == 0" [matBadge]="messageService.messages.length" class="group_icon">{{navItem.icon}}</mat-icon>
+                        <mat-icon *ngSwitchDefault class="group_icon">{{navItem.icon}}</mat-icon>
+                        {{navItem.name}}
+                        <mat-icon class="group_icon floatRight " style="font-size: 1.35rem">chevron_right</mat-icon>
+                    </div>
+                    
+                    <devicelist *ngSwitchCase="'Devices'" [devices]="deviceService.devices.slice(0,2)"></devicelist>
+                    <messagelist *ngSwitchCase="'Messages'" [messages]="messageService.messages.slice(0,1)"></messagelist>
+                    <scheduleList *ngSwitchCase="'Schedules'" [schedules]="scheduleService.schedules.slice(0,1)"></scheduleList>
+                    <eventList *ngSwitchCase="'History'" [events]="eventsService.events.slice(0,1)"></eventList>
+                </div>
+            </div>
+        </div>
+
+        <div [id]='"DEVICE" + device.serialNo' class="x_panel_container" *ngFor="let device of deviceService.devices; let index = index" [ngStyle]="{'left': ((index * 100) + 100) + 'vw'}" >
+            <devicePage [device]="device" ></devicePage>
+        </div>
+    </div>
+</div>

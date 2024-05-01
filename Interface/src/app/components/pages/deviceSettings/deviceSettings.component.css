@@ -1,0 +1,57 @@
+.input_container {
+    height: auto;
+    float:left;
+    width: calc(100% - 1rem);
+    margin-left: .5rem;
+    margin-top: 0rem;
+    position: relative;
+}
+
+.yaw_container {
+    height: calc(80vw - 1rem);
+    float:left;
+    width: auto;
+    margin-left: .5rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.page_sub_content {
+    height: calc(100% - 3rem) !important;
+    mask-image: none !important;
+}
+
+.save_button {
+    bottom: .5rem;
+    left: .5rem;
+    height: auto;
+    width: calc(100% - 1rem);
+    position: absolute;
+    background-color: var(--dark-accent);
+    color: var(--theme-font-light);
+}
+
+input[type=range] {
+    pointer-events: none;
+}
+    
+input[type=range]::-webkit-slider-thumb {
+    pointer-events:auto;
+}
+
+.pitchRange {
+    float:left;
+    width: 100%;
+    margin-top: -1rem;
+    height: auto;
+    position: relative;
+}
+
+.yawRange {
+    float: left;
+    width: auto;
+    margin-top: 3vw;
+    margin-left: -1rem;
+    height: calc(50vw - 1rem);
+    position: relative;
+}

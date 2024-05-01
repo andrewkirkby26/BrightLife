@@ -1,0 +1,15 @@
+<div *ngIf='event' class="tile_rectangle hover message" (click)='navigationService.setView(navigationService.getNavItemByView(Constants.ROUTE_HISTORY))'>
+    <div class="tile_top">
+        <mat-icon class='floatLeft color-green' *ngIf='event.level == "good"'>done_all</mat-icon>
+        <mat-icon class='floatLeft color-warn' *ngIf='event.level == "error"'>warning</mat-icon>
+    </div>
+
+    <div class="tile_bottom">
+        <div class="tile_header">
+            <span class="positionRelative floatLeft">{{event.title}} </span>
+            <span class="message_time"> ({{event.createTime | unichToDayTime}})</span>
+        </div>
+        <!-- <div class="tile_message">{{event.message}}</div> -->
+        <div class="tile_message" >{{deviceService.getDeviceById(event.deviceID)?.name}}</div>
+    </div>
+</div>

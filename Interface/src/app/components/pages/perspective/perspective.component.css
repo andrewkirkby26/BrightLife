@@ -1,0 +1,65 @@
+.normal_page_wrapper {
+    float:left;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 5vh);
+    margin-top: 5vh;
+}
+
+.page_top_button_row {
+    width: 100%;
+    height: 5vh;
+    top:0rem;       
+    left:0rem;
+    position: absolute;
+    z-index: 5;
+}
+.top_left_page_button {
+    float:left;
+    position: relative;
+    margin-top: .5rem;
+    margin-left: .5rem;
+    transition: all .5s, transform .05s;
+    transform-origin: center;
+}
+.top_right_page_button {
+    float:right;
+    position: relative;
+    margin-top: .5rem;
+    margin-right: .5rem;
+}
+
+.page_content {
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    height: calc(100% - 3rem);
+    max-height: calc(100% - 3rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    top: 3rem;
+    z-index: 4;
+    left: 0rem;
+    position: absolute;
+}
+
+.page_sub_content {
+    float:left;
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-height: calc(100% - 3rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+}
+
+.over_arrow {
+    position: absolute;
+    right: .3rem;
+    top: calc(50% - .8rem);
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: auto;
+    color: var(--dark-accent);
+    font-size: 1.35rem;
+}

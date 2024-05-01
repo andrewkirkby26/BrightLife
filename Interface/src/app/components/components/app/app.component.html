@@ -1,0 +1,21 @@
+<div class="entire_app_background">
+   <div class="nav_page_wrapper" [ngClass]="{'nav_page_wrapper_nav_exposed': navigationService.showingNavbar}">
+        <navbar class="nav_wrapper"></navbar>
+        <div class="page_wrapper" [ngClass]="{'page_wrapper_nav_exposed': navigationService.showingNavbar}">
+            <div *ngIf='navigationService.showingNavbar' class="hidden_close_navbar_overlay hover" (click)="navigationService.closeNavbar()"> </div>
+            <div class="login_page_wrapper" [ngClass]="{'login_page_wrapper_nav_exposed': navigationService.showingNavbar, 'login_page_wrapper_login_hidden': authenticationService.userApprovedForUse}">
+                <loginwrapper class="login_wrapper"></loginwrapper>
+                <div class="pages_wrapper">
+                    <home class="home_page"></home>
+                    <div [hidden]='!authenticationService.userApprovedForUse' class="route_wrapper" [ngClass]="{'route_wrapper_closed': navigationService.view.view == Constants.ROUTE_HOME}">
+                        <div class="fullWidth positionRelative floatLeft fullHeight" [hidden]="navigationService.view.view == Constants.ROUTE_HOME">
+                            <router-outlet></router-outlet>
+                        </div>
+                        <right-panel class="route_wrapper" [ngClass]="{'route_wrapper_closed': !navigationService.rightPanel}"></right-panel>
+                    </div>
+                    <popupcom></popupcom>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>

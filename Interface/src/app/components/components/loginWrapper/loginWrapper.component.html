@@ -1,0 +1,69 @@
+<div class="entire_wrapper" >
+    <div class="login_panel_wrapper">
+        <div class="top_blob_wrapper">
+            <div class="blob" style="animation: forwardBlob 23s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 19s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 34s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 57s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 23s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 25s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 10s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 12s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 30s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 11s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 13s linear infinite"></div>
+        </div>
+        <div class="middle_blob_wrapper">
+            <div class="blob" style="animation: forwardBlob 23s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 19s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 34s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 57s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 23s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 25s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 10s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 12s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 30s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 11s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 13s linear infinite"></div>
+        </div>
+        <div class="bottom_blob_wrapper">
+            <div class="blob" style="animation: forwardBlob 23s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 19s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 34s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 57s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 23s linear infinite"></div>
+            <div class="blob" style="animation: forwardBlob 25s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 10s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 12s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 30s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 11s linear infinite"></div>
+            <div class="blob blob2" style="animation: forwardBlob 13s linear infinite"></div>
+        </div>
+        <div class="login_input_container">
+            <div class="login_logo">BrightLife</div>
+            <form id='loginForm' [formGroup]="loginForm" (ngSubmit)="loginSubmitted(loginForm.value)">
+                <div class="login_inputs_wrapper" [ngClass]='{"login_visible": !authenticationService.userApprovedForUse && authenticationService.initialized}'>
+                    <div class="login_text_input_wrappers">
+                        <mat-form-field class="login_text_input"  style="margin-top: .2rem">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput [formControl]="usernameFormControl" placeholder="Ex. pat@example.com" formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field class="login_text_input" style="margin-top: -.4rem; margin-bottom: -1.1rem">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput [formControl]="passwordFormControl" placeholder="" formControlName="password">
+                            <mat-error *ngIf="passwordFormControl.invalid">Due Date is required for Tasks</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="login_button_wrapper">
+                        <button type='submit' mat-fab class="login_button">
+                            <div class="button_icon_slider" [ngClass]="{'button_approved': authenticationService.user && !authenticationService.userApprovedForUse}">
+                                <mat-icon class="button_icon" >done</mat-icon>
+                                <mat-icon class="button_icon" >east</mat-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

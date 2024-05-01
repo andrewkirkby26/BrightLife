@@ -1,0 +1,14 @@
+<div class="entire_wrapper">
+    
+    <div *ngFor='let group of groups'  class="group_container">
+        <div class="group_label hover">
+            <mat-icon class="group_icon">{{group.icon}}</mat-icon>
+            {{group.name}}
+            <mat-divider></mat-divider>
+            <!-- <mat-icon class="group_icon floatRight " style="font-size: 1.35rem">chevron_right</mat-icon> -->
+        </div>
+
+        <devicelist [devices]="group.devices"></devicelist>
+    </div>
+    
+</div>

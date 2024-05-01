@@ -1,0 +1,15 @@
+<div *ngIf='message' class="tile_rectangle hover message" (click)='navigationService.setView(navigationService.getNavItemByView(Constants.ROUTE_MESSAGES))' [ngClass]="{'message_ack': ack}">
+    <div class="tile_top">
+        <mat-icon class='floatLeft color-green' *ngIf='message.level == "good"'>done_all</mat-icon>
+        <mat-icon class='floatLeft color-warn' *ngIf='message.level == "error"'>warning</mat-icon>
+        <mat-icon class='close_button color-warn hover' (click)="$event.stopPropagation(); ackMessage()">close</mat-icon>
+    </div>
+
+    <div class="tile_bottom">
+        <div class="tile_header">
+            <span class="positionRelative floatLeft">{{message.title}} </span>
+            <span class="message_time"> ({{message.createTime | unichToDayTime}})</span>
+        </div>
+        <div class="tile_message">{{message.message}}</div>
+    </div>
+</div>

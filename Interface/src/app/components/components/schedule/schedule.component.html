@@ -1,0 +1,16 @@
+<div class="tile_rectangle hover" *ngIf="schedule" (click)='navigationService.selectSchedule(schedule)'>
+    <div class="tile_top">
+        <!-- <mat-icon class='floatLeft color-green' *ngIf='message.level == "good"'>done_all</mat-icon> -->
+
+        <mat-slide-toggle  class='close_button' (click)='$event.stopPropagation();toggleSchedule()' [checked]="schedule.enabled"></mat-slide-toggle>
+        <!-- <button class='close_button' (click)="ackMessage()" mat-button><mat-icon class="color-warn" style="margin-left: 0rem">close</mat-icon></button> -->
+    </div>
+
+    <div class="tile_bottom" [ngSwitch]="deviceService.getDeviceById(schedule.deviceID)!.type">
+        <div class="tile_header">
+        <span class="positionRelative floatLeft">{{schedule.name}} <mat-icon class="repeat_icon">repeat</mat-icon></span>
+        <div *ngSwitchCase="Constants.DEVICE_TYPE_LASER_TAINER" class="tile_message fullWidth">{{schedule.getNiceDaysOfWeek() + ', ' + schedule.getNiceTimes() + ' (' + schedule.valueParam + ' min)'}}</div>
+        <div *ngSwitchCase="Constants.DEVICE_TYPE_FEEDER" class="tile_message fullWidth">{{schedule.getNiceDaysOfWeek() + ', ' + schedule.getNiceTimes() + ' (' + schedule.valueParam + ' cups)'}}</div>
+        <div class="tile_message">{{deviceService.getDeviceById(schedule.deviceID)!.name}}</div>
+    </div>
+</div>

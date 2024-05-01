@@ -1,0 +1,33 @@
+
+.gouped_toggle {
+    float:right;
+    position: relative;
+    height: auto;
+    margin-top: .5rem;
+    color: var(--dark-accent);
+    width: auto;
+}
+
+.group_container {
+    float:left;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.group_label {
+    float:left;
+    position: relative;
+    height: auto;
+    width: 100%;
+    margin-bottom: .1rem;
+    font-size: 1.2rem;
+}
+
+.group_icon {
+    color: var(--dark-accent);
+    font-size: .8rem;
+    line-height: 1.6rem;
+    margin-left: .3rem;
+    margin-right: -.5rem;
+}

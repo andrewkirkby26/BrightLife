@@ -1,0 +1,84 @@
+.list_container {
+    float:left;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.trimmed_event_container {
+    float:left;
+    position: relative;
+    padding-top: .1rem;
+    height: auto;
+    padding-bottom: .1rem;
+    width: 100%;
+    min-height: 5rem;
+}
+
+.event_icon {
+    height: 2rem;
+    width: 2rem;
+    margin-top: 1.1rem;
+    margin-bottom: 1.5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1rem;
+    line-height: 2.6rem;
+    font-weight: 300;
+    text-align: center;
+    float: left;
+}
+
+.event_time {
+    width: 6.5rem;
+    position: relative;
+    height: 1rem;
+    float:left;
+    text-align: right;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: var(--theme-font-dark);
+    font-weight: 200;
+}
+
+.event_title {
+    width: calc(100% - 10.5rem);
+    float: left;
+    text-overflow: ellipsis;
+    position: relative;
+    height: 1.2rem;
+    max-width: calc(100% - 10rem);
+    font-weight: 400;
+    font-size: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1.2rem;
+    color: var(--dark-accent);
+}
+
+.event_message {
+    position: relative;
+    width: calc(100% - 5rem);
+    float:left;
+    height: auto;
+    margin-top: .2rem;
+    line-height: 1rem;
+    margin-bottom: 1.6rem;
+    color: var(--theme-font-medium);
+    font-size: 1rem;
+}
+
+.event_device {
+    position: absolute;
+    color: var(--theme-font-dark);
+    left: 3rem;
+    bottom: .7rem;
+    font-size: 1rem;
+    font-weight: 200;
+    line-height: 1rem;
+    width: auto;
+    height: auto;
+}

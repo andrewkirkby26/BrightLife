@@ -1,0 +1,4 @@
+.page_sub_content {
+    height: calc(100% - 4rem) !important;
+    margin-top: 1rem;
+}

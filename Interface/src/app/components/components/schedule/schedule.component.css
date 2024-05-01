@@ -1,0 +1,34 @@
+.list_container {
+    float:left;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.message_time {
+    float: left;
+    color: var(--dark-gray);
+    font-size: 1rem;
+    line-height: 1.4rem;
+    margin-left: .5rem;
+    position: relative;
+    height: auto;
+    width: auto;
+}
+
+.message {
+    transform-origin: center;
+}
+
+.close_button {
+    float:right;
+    position: relative;
+}
+
+.repeat_icon {
+    font-size: .9rem;
+    line-height: 1.2rem;
+    left: 0.1rem;
+    position: relative;
+    margin-left: 0.12rem;
+}

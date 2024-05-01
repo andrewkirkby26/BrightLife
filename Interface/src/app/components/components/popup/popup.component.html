@@ -1,0 +1,67 @@
+<div class="overlay" @fadeInOut (click)="navigationService.hideOverlay()" *ngIf="navigationService.overlayShowing"></div>
+<div class="overlay_popup_slider_container" [ngClass]="{'overlay_popup_slider_container_expanded': (navigationService.overlayShowing)}">
+    <div [ngSwitch]='getPopup()'class="fullWidth autoHeight positionRelative floatLeft" style="top:0;">
+        <div  *ngSwitchCase="'Schedule'" class="fullWidth autoHeight positionRelative floatLeft">
+            <div *ngIf='scheduleService.selectedSchedule && scheduleService.changeSchedule' class="page_title_row" style="margin-top: 1rem; ">
+                <div class="page_title"style='font-size: 1.6rem; margin-left: 1rem' >{{(scheduleService.changeSchedule._id == '' ? 'New' : 'Edit') +  ' Schedule'}}</div>
+                <form class="floatLeft fullWidth autoHeight positionRelative">
+                    <mat-form-field class="input_container" appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput #name (input)='scheduleService.changeSchedule.name = name.value' placeholder="Name of your schedule..." [value]="scheduleService.changeSchedule.name">
+                    </mat-form-field>
+                    <mat-form-field class="input_container" appearance="fill" >
+                        <mat-label>Device</mat-label>
+                        <mat-select #scheduleDevices [disabled]='true'(selectionChange)="scheduleService.changeSchedule.deviceID = scheduleDevices.value" [value]="scheduleService.changeSchedule.deviceID">
+                            <mat-option *ngFor="let device of deviceService.devices" [value]="device.serialNo">{{device.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                    <mat-form-field class="input_container" appearance="fill" >
+                        <mat-label>Days</mat-label>
+                        <mat-select multiple #scheduleDays (selectionChange)="scheduleService.changeSchedule.days = scheduleDays.value" [value]="scheduleService.changeSchedule.days">
+                            <mat-option *ngFor="let day of Constants.DAYS" [value]="day">{{day.slice(0,3)}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="input_container hover" appearance="fill">
+                        <mat-label>Time</mat-label>
+                        <input matInput #scheduleTime type='time' onfocus='this.showPicker()'(input)='scheduleService.changeSchedule.time = scheduleTime.value'  [value]="scheduleService.changeSchedule.time">
+                    </mat-form-field> 
+                    <mat-form-field *ngIf='deviceService.getDeviceById(scheduleService.changeSchedule.deviceID)!.type == Constants.DEVICE_TYPE_LASER_TAINER' class="input_container" appearance="fill">
+                        <mat-label>Run Time (min)</mat-label>
+                        <input matInput #runTime type="number" (input)='scheduleService.changeSchedule.valueParam = parseInt(runTime.value)' placeholder="Number of minutes to run for..." [value]="scheduleService.changeSchedule.valueParam">
+                    </mat-form-field>
+                    <mat-form-field *ngIf='deviceService.getDeviceById(scheduleService.changeSchedule.deviceID)!.type == Constants.DEVICE_TYPE_FEEDER' class="input_container" appearance="fill">
+                        <mat-label>Serving Size (cup)</mat-label>
+                        <input matInput #runTimeCups type="number" (input)='scheduleService.changeSchedule.valueParam = parseInt(runTimeCups.value)' placeholder="Number of cups to dispense..." [value]="scheduleService.changeSchedule.valueParam">
+                    </mat-form-field>
+                    <div class="input_container" style="margin-top: -.5rem; ">
+                        <mat-slide-toggle  #thisScheduleEnabled class='close_button positionRelative floatRight' (change)='scheduleService.changeSchedule.enabled = thisScheduleEnabled.checked' [checked]="scheduleService.changeSchedule.enabled">Enabled</mat-slide-toggle>
+                    </div>
+                </form>
+
+                <div *ngIf='scheduleService.changeSchedule._id != ""' class="fullWidth floatLeft positionRelative autoHeight centerText">
+                    <div class="delete_button hover color-warn autoHeight" (click)="showDeleteChallenge()">Delete</div>
+                </div>
+            </div>
+            <button mat-raised-button class="save_button" [disabled]='!scheduleService.canSaveSchedule()'(click)="saveSchedule()">Save</button>
+        </div>
+
+        <div  *ngSwitchCase="'Execute'" class="fullWidth autoHeight positionRelative floatLeft">
+            <div *ngIf='deviceService.selectedDevice' class="page_title_row" style="margin-top: 1rem; ">
+                <div class="page_title"style='font-size: 1.6rem; margin-left: 1rem' >{{deviceService.selectedDevice.name}}</div>
+                <form class="floatLeft fullWidth autoHeight positionRelative">
+                    <mat-form-field *ngIf='deviceService.selectedDevice.type == Constants.DEVICE_TYPE_LASER_TAINER' class="input_container" appearance="fill">
+                        <mat-label>Run Time (min)</mat-label>
+                        <input matInput id="runTime" #runTime type="number" placeholder="Number of minutes to run for..." [value]="5">
+                    </mat-form-field>
+                    <mat-form-field *ngIf='deviceService.selectedDevice.type == Constants.DEVICE_TYPE_FEEDER' class="input_container" appearance="fill">
+                        <mat-label>Serving Size (cup)</mat-label>
+                        <input matInput id="runTime" #runTime type="number" placeholder="Number of cups to dispense..." [value]="1">
+                    </mat-form-field>
+                </form>
+            </div>
+            <button mat-raised-button class="save_button" (click)="executeDevice()">{{Utils.getExecuteNiceTextForDevice(deviceService.selectedDevice!)}}</button>
+        </div>
+    </div>
+    <mat-icon class='close_button color-primary hover' (click)="navigationService.hideOverlay()">close</mat-icon>
+
+</div>

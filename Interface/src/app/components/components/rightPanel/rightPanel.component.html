@@ -1,0 +1,44 @@
+<div  class="normal_page_wrapper" [ngSwitch]="navigationService.rightPanel">
+    <div class="page_top_button_row">
+        <button mat-icon-button class='top_left_page_button' (click)="navigationService.setRightPanel(null)">
+            <mat-icon>west</mat-icon>
+        </button>
+    </div>
+    <div class="page_content" *ngSwitchCase="'Account'">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >User Info</div>
+        </div>
+
+        <div class="page_sub_content">
+            <form *ngIf='authenticationService.changeUser'class="floatLeft fullWidth autoHeight positionRelative">
+                <mat-form-field class="input_container" appearance="fill">
+                    <mat-label>First Name</mat-label>
+                    <input matInput #firstName (input)='authenticationService.changeUser.firstName = firstName.value' placeholder="Your first name..." [value]="authenticationService.changeUser.firstName">
+                </mat-form-field>
+                <mat-form-field class="input_container" appearance="fill" >
+                    <mat-label>Last Name</mat-label>
+                    <input matInput #lastName (input)='authenticationService.changeUser.lastName = lastName.value' placeholder="Your last name..." [value]="authenticationService.changeUser.lastName">
+                </mat-form-field> 
+                <button mat-raised-button class="save_button" [disabled]='!authenticationService.canSaveUser()'(click)="authenticationService.setUser(authenticationService.changeUser); navigationService.setRightPanel(null)">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="page_content" *ngSwitchCase="'Legal'">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >Legal</div>
+        </div>
+
+        <div class="page_sub_content">
+
+        </div>
+    </div>
+    <div class="page_content" *ngSwitchCase="'Privacy'">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >Privacy</div>
+        </div>
+
+        <div class="page_sub_content">
+
+        </div>
+    </div>
+</div>

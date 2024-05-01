@@ -1,0 +1,16 @@
+<div  class="normal_page_wrapper">
+    <div class="page_top_button_row">
+        <button mat-icon-button class='top_left_page_button' (click)="navigationService.jumpHome()">
+            <mat-icon>west</mat-icon>
+        </button>
+    </div>
+    <div class="page_content">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >History {{deviceService.selectedDevice ? '(' + deviceService.selectedDevice.name + ')' : ''}}</div>
+        </div>
+
+        <div class="page_sub_content">
+            <eventList [trimmedList]='true'[events]="deviceService.selectedDevice ? eventsService.getEventsByDeviceId(deviceService.selectedDevice.serialNo) : eventsService.events"></eventList>
+        </div>
+    </div>
+</div>

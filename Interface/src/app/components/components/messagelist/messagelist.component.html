@@ -1,0 +1,7 @@
+<div class="list_container">
+    <message *ngFor='let message of messages' [message]="message"></message>
+
+    <div *ngIf='messages.length <= 0' class=" tile_rectangle tile_dne_wrapper">
+        <div class="tile_message_dne">You're all caught up!</div>
+    </div>
+</div>

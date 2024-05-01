@@ -1,0 +1,96 @@
+.tile_square, .tile_rectangle {
+    position: relative;
+    float:left;
+    border-radius: .5rem;
+    background-color: var(--theme-background-2);
+    box-shadow: 0 0 .3rem .1rem rgba(0, 0, 0, .13);
+    margin: .5rem;
+}
+
+.tile_square {
+    width: calc(50% - 1rem);
+}
+
+.tile_rectangle {
+    width: calc(100% - 1rem);
+}
+
+.tile_square:after{
+    content: "";
+    display: block;
+    padding-bottom: 65%;
+}
+
+.tile_rectangle:after {
+    content: "";
+    display: block;
+    padding-bottom: 32%;
+}
+
+.tile_content {
+    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    margin: .5rem;
+    position: absolute;
+}
+
+
+.tile_dne_wrapper {
+    box-shadow: 0 0 .3rem .1rem rgba(0, 0, 0, .13) inset;
+    background-color: var(--theme-background-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile_message_dne {
+    font-size: 1.3rem;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: var(--primary);
+}
+
+.tile_top {
+    height: auto;
+    width: calc(100% - 1rem);
+    position: absolute;
+    top:.5rem;
+    right: .5rem;
+}
+
+.tile_bottom {
+    height: auto;
+    width: calc(100% - 1rem);
+    position: absolute;
+    bottom:0.5rem;
+    right: 0.5rem;
+}
+
+.tile_header {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    width: 100%;
+    float:left;
+    position: relative;
+    height: auto;
+    color: var(--dark-accent);
+    margin-bottom: .2rem;
+}
+
+.tile_message {
+    font-size: 1rem;
+    line-height: 1rem;
+    width: 100%;
+    float:left;
+    margin-top: .2rem;
+    position: relative;
+    height: auto;
+    color: var(--dark-gray)
+}
+
+.tile_top mat-icon {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    margin-left: .5rem;
+}

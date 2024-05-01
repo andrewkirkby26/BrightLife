@@ -1,0 +1,23 @@
+<div class="list_container" *ngIf="!trimmedList">
+    <event *ngFor='let event of events' [event]="event"></event>
+
+    <div *ngIf='events.length <= 0' class=" tile_rectangle tile_dne_wrapper">
+        <div class="tile_message_dne">No events to show</div>
+    </div>
+</div>
+
+<div class="list_container" *ngIf="trimmedList">
+    <div *ngFor='let event of events' class="trimmed_event_container">
+        <div class="event_icon" [ngClass]="{'background-warn': event.level == 'error', 'background-green': event.level == 'good'}">
+            <mat-icon *ngIf="event.level == 'good'" class="color-white displayInline" style="font-size: 1.2rem">done</mat-icon>
+            <mat-icon *ngIf="event.level == 'error'" class="color-white displayInline" style="font-size: .8rem; line-height: 0rem">warning</mat-icon>
+        </div>
+        <div class="event_title">{{event.title}}</div>
+        <div class="event_time">{{event.createTime | unichToDayTime}}</div>
+        <div class="event_message">{{event.message}}</div>
+        <div class="event_device" *ngIf="!deviceService.selectedDevice">{{deviceService.getDeviceById(event.deviceID)?.name}}</div>
+        <mat-divider class="positionRelative floatLeft fullWidth autoHeight"></mat-divider>
+    </div>
+
+    <div  *ngIf='events.length <= 0' class="tile_message_dne" style=" margin-top: 4rem">No events to show</div>
+</div>

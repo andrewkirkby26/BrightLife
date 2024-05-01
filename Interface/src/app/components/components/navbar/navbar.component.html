@@ -1,0 +1,19 @@
+<div class="entire_wrapper">
+    <div class="logo">BrightLife</div>
+
+    <!-- <button mat-icon-button  (click)="authenticationService.logout()">
+        <mat-icon>logout</mat-icon>
+    </button> -->
+
+    <div *ngFor='let navItem of navigationService.navbarItems' [hidden]="!navItem.showInNav" (click)="navigationService.setView(navItem)" class="page_route hover">
+        <mat-icon style="font-size: 1rem; ">{{navItem.icon}}</mat-icon>
+        {{navItem.name}}
+    </div>
+
+    <mat-slide-toggle class="theme_container" #theme [checked]='navigationService.theme == Constants.THEME_DARK' (change)='navigationService.setTheme(theme.checked ? Constants.THEME_DARK : Constants.THEME_DEFAULT)'>
+        <mat-icon class="theme_indicator">dark_mode</mat-icon>
+        <!-- <mat-icon *ngIf="navigationService.theme == Constants.THEME_DEFAULT" class="theme_indicator">dark_mode</mat-icon>
+        <mat-icon *ngIf="navigationService.theme == Constants.THEME_DARK" class="theme_indicator">wb_sunny</mat-icon> -->
+    </mat-slide-toggle>
+    <div class="version_label">version 1.0.0</div>
+</div>

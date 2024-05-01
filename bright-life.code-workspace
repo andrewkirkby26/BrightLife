@@ -1,0 +1,61 @@
+{
+    //Specify folders to open
+    "folders": [{
+            "name": "BrightLife",
+            "path": "./"
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "hookyqr.beautify",
+        ]
+    },
+    "settings": {
+        //Specify config for beautifier
+        "beautify.config": {
+            "indent_char": " ", //Use space as indent character
+            "end_with_newline": true, //End file with an empty line
+            "indent_size": 4, //Number of indenet characters per "indent"
+            // "wrap_line_length": 50, //Max number of characters per line
+            // "wrap_attributes": "force",   //Every html attribute will be wrapped
+            "selector_separator_newline": true, //Empty line between each selector
+            "break_chained_methods": false, //Every chain method is NOT a new line ie "HI" /n .toLowerCase() /n .indexOf("h")
+            "indent_level": 0, //Initial indent level
+			"indent_inner_html": true, //indent body and head
+            "max_preserve_newlines": 2, //Max number of empty lines back to back is this value - 1. 
+            "keep_array_indentation": false, //Preserve array indentation.
+            "keep_function_indentation": false, //Preserve function indentation.
+            "space_after_anon_function": true, //Space before parens
+            "space_after_named_function": true, //Space before parens
+            "space_before_conditional": true, //Space before != == = etc...
+
+            //ONLY CSS FORMATTERS
+            "css": {
+
+            },
+
+            //ONLY HTML FORMATTERS
+            "html": {
+
+            },
+
+            //ONLY JS FORMATTERS
+            "js": {
+
+            }
+        },
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "hookyqr.beautify",
+        "files.exclude": {
+            "**/.git": true,
+            "**/.svn": true,
+            "**/.hg": true,
+            "**/CVS": true,
+            "**/.DS_Store": true,
+            ".firebaserc": true,
+            ".firebase": true,
+            "node_modules": true
+        }
+    },
+
+}

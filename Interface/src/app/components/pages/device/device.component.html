@@ -1,0 +1,48 @@
+<div *ngIf="device" class="normal_page_wrapper">
+    <div class="page_content" >
+        <div class="page_title_row" style="margin-top: 1rem">
+            <div class="page_title" >{{device.name}}</div>
+            <!-- <mat-spinner *ngIf='delayAfterSending' color="accent" class="top_right_page_button" [diameter]="36"></mat-spinner> -->
+            <button *ngIf='!device.isExecuting()' mat-raised-button color="primary" [disabled]="device.isOffline()" class="top_right_page_button" (click)="navigationService.showPopup('Execute')">{{device.isOffline() ? 'Offline' : Utils.getExecuteNiceTextForDevice(device)}}</button>
+            <button *ngIf='device.isExecuting()' mat-raised-button color="warn" class="top_right_page_button" (click)="stopExecuting()">Stop</button>
+        </div>
+
+        <div class="group_container">
+            <div class="group_label hover" (click)="navigationService.setView(navigationService.getNavItemByView(Constants.ROUTE_MESSAGES))">
+                <mat-icon [matBadge]="messageService.getMessagesByDeviceId(device.serialNo).length" matBadgeSize='small'  [matBadgeHidden]="messageService.getMessagesByDeviceId(device.serialNo).length == 0" matBadgeColor="warn" class="group_icon">{{navigationService.getNavItemByView(Constants.ROUTE_MESSAGES).icon}}</mat-icon>
+                {{navigationService.getNavItemByView(Constants.ROUTE_MESSAGES).name}}
+                <mat-icon class="group_icon floatRight " style="font-size: 1.35rem">chevron_right</mat-icon>
+            </div>
+
+            <messagelist [messages]="messageService.getMessagesByDeviceId(device.serialNo).slice(0,1)"></messagelist>
+        </div>
+
+        <div class="group_container">
+            <div class="group_label hover" (click)="navigationService.setView(navigationService.getNavItemByView(Constants.ROUTE_SCHEDULE))">
+                <mat-icon class="group_icon">{{navigationService.getNavItemByView(Constants.ROUTE_SCHEDULE).icon}}</mat-icon>
+                {{navigationService.getNavItemByView(Constants.ROUTE_SCHEDULE).name}}
+                <mat-icon class="group_icon floatRight " style="font-size: 1.35rem">chevron_right</mat-icon>
+            </div>
+
+            <scheduleList [schedules]="scheduleService.getSchedulesByDeviceId(device.serialNo).slice(0,1)"></scheduleList>
+        </div>
+
+        <div class="group_container">
+            <div class="group_label hover" (click)="navigationService.setView(navigationService.getNavItemByView(Constants.ROUTE_HISTORY))">
+                <mat-icon class="group_icon">{{navigationService.getNavItemByView(Constants.ROUTE_HISTORY).icon}}</mat-icon>
+                {{navigationService.getNavItemByView(Constants.ROUTE_HISTORY).name}}
+                <mat-icon class="group_icon floatRight " style="font-size: 1.35rem">chevron_right</mat-icon>
+            </div>
+
+            <eventList [events]="eventsService.getEventsByDeviceId(device.serialNo).slice(0,1)"></eventList>
+        </div>
+
+        <div class="group_container">
+            <div class="group_label hover" (click)="navigationService.setView(navigationService.getNavItemByView(Constants.ROUTE_DEVICE_SETTINGS))">
+                <mat-icon class="group_icon">{{navigationService.getNavItemByView(Constants.ROUTE_DEVICE_SETTINGS).icon}}</mat-icon>
+                {{navigationService.getNavItemByView(Constants.ROUTE_DEVICE_SETTINGS).name}}
+                <mat-icon class="group_icon floatRight " style="font-size: 1.35rem">chevron_right</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>

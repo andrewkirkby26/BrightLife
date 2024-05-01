@@ -1,0 +1,26 @@
+<div class="normal_page_wrapper">
+    <div class="page_top_button_row">
+        <button mat-icon-button class='top_left_page_button' (click)="navigationService.jumpHome()">
+            <mat-icon>west</mat-icon>
+        </button>
+    </div>
+    <div class="page_content">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >Devices</div>
+
+            <mat-slide-toggle class="gouped_toggle" [(ngModel)]="groupedToggle"> Grouped</mat-slide-toggle>
+        </div>
+        
+        <groupeddevices *ngIf="groupedToggle" [groups]="deviceService.groupedDevices"></groupeddevices>
+
+        <div *ngIf="!groupedToggle"  class="group_container">
+            <div class="group_label hover">
+                <mat-icon class="group_icon">list</mat-icon>
+                All Devices
+                <mat-divider></mat-divider>
+            </div>
+            <devicelist [devices]="deviceService.devices"></devicelist>
+        </div>
+    </div>
+
+</div>

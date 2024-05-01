@@ -1,0 +1,13 @@
+<div *ngIf='device' class="tile_square hover" (click)="navigationService.selectDevice(device)">
+    <div class="tile_top">
+        <mat-icon class='floatLeft color-green' *ngIf='!device.isOffline() && device.state.state == Constants.STATE_INITIALIZING'>settings</mat-icon>
+        <mat-icon class='floatLeft color-green' *ngIf='!device.isOffline() && device.state.state == Constants.STATE_EXECUTING'>directions_run</mat-icon>
+        <mat-icon class='floatLeft color-dark-accent' *ngIf='!device.isOffline() && device.state.state == Constants.STATE_IDLE'>done</mat-icon>
+        <mat-icon class='floatLeft color-warn' *ngIf='device.isOffline() ||device.state.state == Constants.STATE_ERROR '>warning</mat-icon>
+    </div>
+
+    <div class="tile_bottom">
+        <div class="tile_header">{{device.name}}</div>
+        <!-- <div class="tile_message">{{message.message}}</div> -->
+    </div>
+</div>

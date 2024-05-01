@@ -1,0 +1,30 @@
+.entire_wrapper {
+    width: 100%;
+    height: auto;
+    float:left;
+    position: relative;
+}
+
+.group_container {
+    float:left;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.group_label {
+    float:left;
+    position: relative;
+    height: auto;
+    width: 100%;
+    margin-bottom: .1rem;
+    font-size: 1.2rem;
+}
+
+.group_icon {
+    color: var(--dark-accent);
+    font-size: .8rem;
+    line-height: 1.6rem;
+    margin-left: .3rem;
+    margin-right: -.5rem;
+}

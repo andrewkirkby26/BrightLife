@@ -1,0 +1,23 @@
+[screenSize="Small"] {  
+    font-size: 5.3vw;
+}
+
+[screenSize="Medium"] {
+    font-size: 2.3vw;
+}
+
+[screenSize="Large"] {
+    font-size: 2.3vw;
+}
+
+/* Add the below selectors to your component to control how it looks in each size */
+
+/* Large */
+@media (min-aspect-ratio: 1/1) {
+
+}
+
+/* Small */
+@media (max-aspect-ratio: 1/1) {
+
+}

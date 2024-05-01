@@ -1,0 +1,38 @@
+<div  class="normal_page_wrapper">
+    <div class="page_top_button_row">
+        <button mat-icon-button class='top_left_page_button' (click)="navigationService.jumpHome()">
+            <mat-icon>west</mat-icon>
+        </button>
+    </div>
+    <div class="page_content">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >Settings - {{deviceService.selectedDevice ? deviceService.selectedDevice.name : ''}} </div>
+        </div>
+
+        <div class="page_sub_content"  *ngIf="deviceService.selectedDevice && deviceService.deviceForChanges">
+            <form class="floatLeft fullWidth autoHeight positionRelative">
+                <!-- Name -->
+                <mat-form-field class="input_container" appearance="fill">
+                  <mat-label>Name</mat-label>
+                  <input matInput #deviceName (input)='deviceService.deviceForChanges.name = deviceName.value' placeholder="Name of your device..." [value]="deviceService.selectedDevice.name">
+                </mat-form-field>
+
+                <!-- Pitch -->
+                <div *ngIf='deviceService.selectedDevice.isLaserTainer()' class="input_container" appearance="fill">
+                    <mat-label>Pitch</mat-label>
+                    <mat-slider matInput #devicePitchOne class='pitchRange' (input)='deviceService.deviceForChanges.data.pitchMin = devicePitchOne.value'  [value]="deviceService.selectedDevice.data.pitchMin"></mat-slider>
+                    <mat-slider matInput #devicePitchTwo class='pitchRange' (input)='deviceService.deviceForChanges.data.pitchMax = devicePitchTwo.value'  [value]="deviceService.selectedDevice.data.pitchMax"></mat-slider>
+                </div>
+
+                <!-- Yaw -->
+                <div *ngIf='deviceService.selectedDevice.isLaserTainer()' class="yaw_container" appearance="fill">
+                    <mat-label>Yaw</mat-label>
+                    <mat-slider matInput #deviceYawOne vertical class='yawRange' (input)='deviceService.deviceForChanges.data.yawMin = deviceYawOne.value'  [value]="deviceService.selectedDevice.data.yawMin"></mat-slider>
+                    <mat-slider matInput #deviceYawTwo vertical class='yawRange' (input)='deviceService.deviceForChanges.data.yawMax = deviceYawTwo.value'  [value]="deviceService.selectedDevice.data.yawMax"></mat-slider>
+                </div>
+            </form>
+
+            <button mat-raised-button class="save_button" [disabled]='!deviceService.canSaveDevice()'(click)="saveDevice()">Save</button>
+        </div>
+    </div>
+</div>

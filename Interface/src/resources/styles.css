@@ -1,0 +1,100 @@
+@import "size-handler.css";
+@import "./external/font-awesome/all.min.css";
+@import "./external/google-icons/faces.css";
+@import "./helperStyles.css";
+@import "./theme.css";
+@import "./tile.css";
+
+* {
+    font-family: Standard;
+    font-weight: 400;
+    font-style: normal;
+    font-variant-numeric: tabular-nums;
+}
+
+*{
+    scroll-behavior: smooth;
+    user-select: none;
+    transition: all .5s;
+}
+
+@font-face {
+    font-family: 'Standard';
+    src: url('./external/webfonts/Quicksand/Quicksand-VariableFont_wght.ttf')
+}
+html, body { height: 100vh; width: 100vw}
+body { 
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    min-width:100%;
+    min-height: 100%;
+}
+
+mat-label {
+    padding-left: .2rem;
+}
+
+.mat-warn {
+    background-color: var(--warn)!important;
+}
+
+button[mat-icon-button] {
+    color: hsl(201deg 57% 34%);
+    opacity: .9;
+}
+
+* {
+    user-select: none;
+}
+
+
+button.warn {
+    background-color: var(--warn) !important;
+    color: var(--white) !important;
+}
+
+button.primary {
+    background-color: var(--primary) !important;
+}
+
+button.accent {
+    background-color: var(--accent) !important;
+}
+
+button.dark-accent {
+    background-color: var(--dark-accent) !important;
+    color: var(--white) !important;
+}
+
+
+.mat-badge-content {
+    right: 1px !important;
+    top: -5px !important;
+}
+
+.page_title_row {
+    width: 100%;
+    position: relative;
+    float: left;
+    margin-top: 4rem;
+    height: auto;
+    margin-bottom: .5rem;
+}
+
+.page_title {
+    font-weight: 300;
+    font-size: 2rem;
+    float: left;
+    text-align: center;
+    position: relative;
+    line-height: 1.6rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: -.5rem;
+    /* color: hsl(201deg 57% 34%); */
+    color: black;
+    max-width:100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

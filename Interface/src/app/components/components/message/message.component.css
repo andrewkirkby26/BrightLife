@@ -1,0 +1,43 @@
+.list_container {
+    float:left;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.message_time {
+    float: left;
+    color: var(--dark-gray);
+    font-size: 1rem;
+    line-height: 1.4rem;
+    margin-left: .5rem;
+    position: relative;
+    height: auto;
+    width: auto;
+}
+
+.message {
+    transition: transform 1s;
+    transform-origin: center;
+    z-index: 7;
+}
+
+.close_button {
+    float:right;
+    position: relative;
+}
+
+.message_ack {
+    animation: ack 1s ease-in-out;
+    z-index: 4;
+}
+
+@keyframes ack {
+    40% {
+        transform: scale(.8);
+    }
+    100% {
+        transform: scale(.8) translate(0, -200%);
+    }
+  }
+

@@ -1,0 +1,20 @@
+<div class="normal_page_wrapper">
+    <div class="page_top_button_row">
+        <button mat-icon-button class='top_left_page_button' (click)="navigationService.jumpHome()">
+            <mat-icon>west</mat-icon>
+        </button>
+        <button *ngIf="deviceService.selectedDevice" mat-icon-button class='top_right_page_button' (click)="navigationService.selectSchedule(null); ">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="page_content">
+        <div class="page_title_row"style="margin-top: .5rem">
+            <div class="page_title" >Schedule {{deviceService.selectedDevice ? '(' + deviceService.selectedDevice.name + ')' : ''}}</div>
+        </div>
+        <div class="page_sub_content">
+            <scheduleList [schedules]="deviceService.selectedDevice ? scheduleService.getSchedulesByDeviceId(deviceService.selectedDevice.serialNo) : scheduleService.schedules"></scheduleList>
+            
+            <div *ngIf="!deviceService.selectedDevice" class="tile_message_dne" style="font-size: 1rem">To create a new schedule, go to the device you want to schedule and select "Schedules".</div>
+        </div>
+    </div>
+</div>

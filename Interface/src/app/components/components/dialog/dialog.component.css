@@ -1,0 +1,57 @@
+.popup_wrapper {
+    height: auto;
+    width: auto;
+    position: relative;
+}
+
+.popup_header {
+    float:left;
+    position: relative;
+    height: auto;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--dark-accent);
+    line-height: 1.5rem;
+    width: auto;
+}
+
+.popup_close {
+    float:right;
+    position: relative;
+    height: auto;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--dark-accent);
+    line-height: 1.2rem;
+    width: 1.2rem;
+}
+
+.popup_content {
+    float:left;
+    position: relative;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--primary);
+    line-height: 1rem;
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+.popup_buttons {
+    float:right;
+    position: relative;
+    height: auto;
+    width: auto;
+    margin-right: -.75rem;
+    margin-bottom: -1.75rem;
+}
+
+.popup_button {
+    float:left;
+    position: relative;
+    height: auto;
+    width: auto;
+}
