@@ -3,6 +3,8 @@ from Base.Firebase.FireStoreUtil import FireStoreUtil
 from Base.Monitors.BaseMonitor import BaseMonitor
 from Base import BaseConstants 
 from Base.Entities.DeviceData import DeviceData
+from Base.Entities.Device import Device
+from Base.Entities.Schedule import Schedule
 
 class DeviceDataFetcher(BaseUtil):
 
@@ -15,10 +17,21 @@ class DeviceDataFetcher(BaseUtil):
         self.execute()
 
     def execute(self):
-        device_data = DeviceData()
+        devJSON = self.fs.getDocument(BaseConstants.COLLECTION_DEVICES, self.system.getSerialNo())
+        if (devJSON is not None):
+            device = Device.clone(devJSON)
 
-        device_data.device = self.fs.getDocument(BaseConstants.COLLECTION_DEVICES, self.system.getSerialNo())
-        device_data.schedules = self.fs.getDocumentsByQuery(BaseConstants.COLLECTION_SCHEDULES, 'deviceID', '==', self.system.getSerialNo())
-        device_data.pets = self.fs.getDocumentsByQuery(BaseConstants.COLLECTION_PETS, 'deviceIDs', 'array_contains', self.system.getSerialNo())
+            schedules = []
+            schedJSON = self.fs.getDocumentsByQuery(BaseConstants.COLLECTION_SCHEDULES, 'deviceID', '==', self.system.getSerialNo())
+            if (schedJSON is not None and len(schedJSON) > 0):
+                for sched in schedJSON:
+                    schedules.append(Schedule.clone(sched))
 
-        self.system.setDeviceData(device_data)
+            device_data = DeviceData(
+                device,
+                [],
+                self.fs.getDocumentsByQuery(BaseConstants.COLLECTION_PETS, 'deviceIDs', 'array_contains', self.system.getSerialNo()),
+                schedules
+            )
+
+            self.system.setDeviceData(device_data)

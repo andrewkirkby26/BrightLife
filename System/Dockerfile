@@ -1,16 +1,13 @@
-FROM python:3.9
-# FROM balenalib/raspberrypi3-python:3.7-sid
+FROM balenalib/raspberrypi3-64-ubuntu-python:3.7.16-build
 
-COPY . /
 WORKDIR /
 
-RUN apt update
-# RUN apt install hostapd dnsmasq
+COPY requirements.txt requirements.txt
 
-RUN pip3 install --upgrade pip
+RUN install_packages network-manager
 
-# RUN pip3 install RPi.GPIO
+RUN pip install -r requirements.txt
 
-RUN pip3 install -r requirements.txt
+COPY . ./
 
 CMD ["python3", "-u", "./Launcher.py"]

@@ -9,7 +9,7 @@ class MessageRequest(BaseMonitor):
     callback = threading.Event()
 
     def init(self):
-        self.db = self.system.firestoreUtil.db
+        self.db = self.system.getFirestoreUtil().getDB()
         self.db.collection(BaseConstants.COLLECTION_COMMANDS).document(self.system.getSerialNo()).on_snapshot(self.messageRecieved)
         self.system.firestoreUtil.postDocument({'command': None}, BaseConstants.COLLECTION_COMMANDS,self.system.getSerialNo() )
         self.daemon = True

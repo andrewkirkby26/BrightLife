@@ -9,7 +9,6 @@ class FireStoreUtil:
     cred = credentials.Certificate(Constants.FIREBASE_CRED_PATH)
     app = firebase_admin.initialize_app(cred)
     db = firestore.client()
-    system = None
     
     def __init__(self, sys):
         self.system = sys
@@ -40,3 +39,7 @@ class FireStoreUtil:
             rVal.append(doc.to_dict())
 
         return rVal
+    
+    def getDB(self):
+        return self.db
+    

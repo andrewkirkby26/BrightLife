@@ -1,4 +1,11 @@
-IS_DEV = True
+import os
+
+IS_DEV = os.getenv('DEV') == "True"
+
+PIN_RESET_BUTTON = 20
+
+SERIAL_PREFIX_LASER_TAINER = 'LT'
+SERIAL_PREFIX_FEEDER= 'FE'
 
 STATE_INITIALIZING = "Initializing"
 STATE_IDLE = "Idle"

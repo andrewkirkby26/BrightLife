@@ -24,5 +24,5 @@ class ArmSubsystem(BaseMonitor):
         self.shoulder.setAngle(self.angle)
         self.elbow.setAngle(self.angle)
 
-        if (self.angle > 180):
+        if (self.angle >= 180):
             self.angle = 0

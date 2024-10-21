@@ -5,6 +5,7 @@ import traceback
 import calendar
 from datetime import date
 from Base.Monitors.TaskExecutor import TaskExecutor
+from Base.Entities.Event import Event
 
 class LaserTainerTaskExecutor(TaskExecutor):
 
@@ -14,12 +15,10 @@ class LaserTainerTaskExecutor(TaskExecutor):
     failureMessage = ''
 
     def executeTask(self):
-        event = {
-            'ownerID': self.system.deviceData.device['ownerID'],
-            'deviceID': self.system.getSerialNo()
-        }
+        deviceData = self.system.getDeviceData()
+        event = Event(deviceData.get_device().get_ownerID(),self.system.getSerialNo())
         pet_name = ''
-        pets = self.system.deviceData.pets
+        pets = deviceData.get_pets()
         if (pets is not None and len(pets) > 0):
             pet_name = pets[0]['name']
 

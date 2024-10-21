@@ -30,7 +30,7 @@ class LaserTainerSystem(BaseSystem):
             self.armSubsystem.init()
 
             self.initialized = True
-                    
+
         except Exception as e:
             self.log('Error During Init: ' + str(e) + str(traceback.format_exc()))
 
@@ -44,4 +44,4 @@ class LaserTainerSystem(BaseSystem):
             self.system.log('Error in execute request', e)
 
     def runTask(self, task):
-        self.taskExecutor = LaserTainerTaskExecutor(self, task)
+        self.setTaskExecutor(LaserTainerTaskExecutor(self, task))

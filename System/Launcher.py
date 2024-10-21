@@ -1,35 +1,31 @@
 import os
 from signal import signal, SIGINT
 from sys import *
+from Base import BaseConstants
+import threading
+import traceback
 import time
-from Feeder.FeederSystem import FeederSystem
+import time
 from LaserTainer.LaserTainerSystem import LaserTainerSystem
+from Base.BaseSystem import BaseSystem
 
 class Launcher:
-    system = None
-
-    def run(self):
+    system: BaseSystem = None
+        
+    def prep(self):
         #Used to detect ctrl+c for a safe shutdown
         signal(SIGINT, self.shutdown)
 
         SERIAL_NO = os.getenv('SERIAL_NO')
 
         if SERIAL_NO is None:
-            SERIAL_NO = "LT-1"
+            SERIAL_NO = BaseConstants.SERIAL_PREFIX_LASER_TAINER + "-1"
             
         print('SERIAL_NO: ' + SERIAL_NO)
         
-        if SERIAL_NO.startswith('LT'):
-            
-            self.system = LaserTainerSystem()
+        if SERIAL_NO.startswith(BaseConstants.SERIAL_PREFIX_LASER_TAINER):
+            self.system = LaserTainerSystem(SERIAL_NO)
             self.system.init()
-        elif SERIAL_NO.startswith('FE'):
-            self.system = FeederSystem()
-            self.system.init()
-
-        # Just so this thread continues
-        while True:
-            time.sleep(10)
 
     def shutdown(self, signal_received, frame):
         self.system.shutdown()
@@ -37,4 +33,4 @@ class Launcher:
 
 if __name__ == "__main__":
     launcher = Launcher()
-    launcher.run()
+    launcher.prep()

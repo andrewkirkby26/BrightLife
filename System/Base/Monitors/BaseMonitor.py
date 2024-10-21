@@ -6,26 +6,30 @@ class BaseMonitor(threading.Thread):
 
     loopCount = 0
     system = None
-    timeout = None
+    timeout = 2
     name = None
     gpio = None
 
-    def __init__(self, timeout, system):
+    def __init__(self, timeout: int, system):
         self.timeout = timeout
         threading.Thread.__init__(self)
         self.system = system
-        self.gpio = system.gpio
+        self.gpio = system.getGPIO()
+        self.daemon = True
 
     def init(self):
-        self.daemon = True
+        self.postInit()
         self.start()
+
+    def postInit(self):
+        time.sleep(0)
 
     def run(self):
         self.system.log(self.name + ' Thread Started')
         while (True):
             try:
                 self.loopCount = self.loopCount + 1
-                if (not self.system.SHUTDOWN):
+                if (not self.system.shouldShutdown()):
                     self.cycleOnce()
             except Exception as e:
                 self.system.log(traceback.format_exc())

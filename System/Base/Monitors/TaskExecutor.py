@@ -4,11 +4,13 @@ import threading
 import traceback
 import calendar
 from datetime import date
+from Base.Entities.Message import Message
+from Base.Entities.Event import Event
 
 class TaskExecutor(threading.Thread):
 
     name = "Task Executor"
-    system: None
+    system = None
     task: None
     gpio: None
     killed = False
@@ -24,17 +26,16 @@ class TaskExecutor(threading.Thread):
     def run(self):
         self.system.log(self.name + '  Executing Task')
         try:
-            self.system.setStatus(self.system.status.setState(BaseConstants.STATE_EXECUTING))
-            self.system.lastExecuteTime = self.system.getNowTime()
+            self.system.setState(BaseConstants.STATE_EXECUTING)
+            self.system.updateLastExecuteTime()
             self.executeTask()
         except Exception as e:
             self.system.log(traceback.format_exc())
             
-        
         self.cleanUp()
         self.system.log('Completed Task')
-        self.system.setStatus(self.system.status.setState(BaseConstants.STATE_IDLE))
-        self.system.taskExecutor = None
+        self.system.setState(BaseConstants.STATE_IDLE)
+        self.system.setTaskExecutor(None)
 
     def executeTask(self):
         self.system.log('OVERRIDE THIS')
@@ -46,8 +47,8 @@ class TaskExecutor(threading.Thread):
         self.killed = True
         self.system.log('Requested to stop task')
 
-    def postMessage(self, message):
+    def postMessage(self, message: Message):
         self.system.messagePoster.postMessage(message)
 
-    def postEvent(self, event):
+    def postEvent(self, event: Event):
         self.system.eventPoster.postEvent(event)
