@@ -1,10 +1,10 @@
-from flask import Flask, render_template
-import os
-from flask import Blueprint
+from flask import Flask, render_template, send_from_directory
+from flask import send_from_directory
+
 
 class WifiREST:
     
-    app = Flask(__name__,template_folder='interface')
+    app = Flask(__name__,static_folder='interface/browser')
 
     system  = None
     wifiUtil = None
@@ -13,22 +13,14 @@ class WifiREST:
         global system
         system = sys
         self.wifiUtil = system.getWifiUtil()
-        self.app.run(host="0.0.0.0", port=80, debug=True)
-        
-    # @app.hook('after_request')
-    # def enable_cors():
-    #     response.headers['Access-Control-Allow-Origin'] = '*'
-    #     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
-    #     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
-        
-    @app.route('/')
-    def index():
-        return render_template('index.html')
-
-    # @app.route("/")
-    # def hello_world():
-    #     return system.getStatus().getState()
+        self.app.run(host="0.0.0.0", port=80)
     
+    @app.route('/', defaults=dict(filename=None))
+    @app.route('/<path:filename>', methods=['GET', 'POST'])
+    def index(filename):
+        filename = filename or 'index.html'
+        return send_from_directory('interface/browser', filename)
+
     @app.route("/list")
     def list():
         return system.getWifiUtil().listAvailableConnections()
